@@ -1,0 +1,18 @@
+# Read data from sql directly into pandas dataframe
+from pandas.io import sql
+import sqlite3
+
+conn = sqlite3.connect('/Users/gjreda/Dropbox/gregreda.com/_code/towed')
+query = "SELECT * FROM towed WHERE make = 'FORD';"
+
+results = sql.read_sql(query, con=conn)
+results.head()
+
+# Read data from a url source into pandas dataframe
+url = 'https://raw.github.com/gjreda/best-sandwiches/master/data/best-sandwiches-geocode.tsv'
+
+# fetch the text from the URL and read it into a DataFrame
+from_url = pd.read_table(url, sep='\t')
+from_url.head(3)
+
+# Source: http://www.gregreda.com/2013/10/26/intro-to-pandas-data-structures/
